@@ -127,6 +127,9 @@ References
 | Perneger, TV.
 | `BMJ Publishing Group <http://www.bmj.com/content/316/7139/1236>`_. 1998;316:1236.
 
+| **Variable locus length in the human genome leads to ascertainment bias in functional inference for non-coding elements**
+| Taher, L. and Ovcharenko, I. (2009), `Bioinformatics <http://bioinformatics.oxfordjournals.org/content/25/5/578>`_. Vol. : Iss. 5: 578–584.
+
 .. note::
 
     You can read more about **Hypergeometric Distribution** at `Simple Interactive Statistical Analysis <http://www.quantitativeskills.com/sisa/distributions/hypghlp.htm>`_ or `Wolfram MathWorld <http://mathworld.wolfram.com/HypergeometricDistribution.html>`__. **Bonferroni Correction** is discussed in this `Wolfram MathWorld <http://mathworld.wolfram.com/BonferroniCorrection.html>`__ article.
