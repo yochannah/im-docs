@@ -99,9 +99,7 @@ NGO
 NWG 
     Total number of genes in the whole genome.
 
-.. note::
-    
-    The relevant `InterMine source <https://github.com/intermine/intermine/blob/dev/intermine/web/main/src/org/intermine/web/logic/widget/ErrorCorrection.java>`_.
+
 References
 ----------
 
