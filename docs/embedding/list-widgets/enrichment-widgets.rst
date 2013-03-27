@@ -98,6 +98,9 @@ NGO
     Number of genes in the genome associated with this GO term
 NWG 
     Total number of genes in the whole genome.
+.. note::
+    
+    The relevant `InterMine source <https://github.com/intermine/intermine/blob/dev/intermine/bio/webapp/src/org/intermine/bio/web/logic/widget/GeneLenghtCorrectionCoefficient.java>`_.
 
 
 References
