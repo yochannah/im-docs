@@ -82,7 +82,7 @@ Corrected probability of observing a given GO term is equal to the original GO p
 
         Adjusted P = P x CCGO
 
-where the correction coefficient CCGO is calculated as:
+where the correction coefficient per GO term CCGO is calculated as:
 
 .. code-block:: matlab
 
