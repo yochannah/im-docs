@@ -70,7 +70,7 @@ This correction is the less stringent than the Bonferroni, and therefore tolerat
     The relevant `InterMine source <https://github.com/intermine/intermine/blob/dev/intermine/web/main/src/org/intermine/web/logic/widget/ErrorCorrection.java>`_.
 
 Gene length correction
-~~~~~~~~~~~~~~~~~~~~~~
+----------------------
 The probability of a given set of genes being hit in a ChIP experiment is amongst other things proportional to their length – very long genes are much more likely to be randomly hit than very short genes are.
 This is an issue for some widgets – for example, if a given GO term (such as gene expression regulation) is associated with very long genes in general, these will be much more likely to be hit in a ChIP experiment than the ones belonging to a GO term with very short genes on average.
 The p-values should be scaled accordingly to take this into account.
@@ -100,7 +100,7 @@ NWG
     Total number of genes in the whole genome.
 .. note::
     
-    The relevant `InterMine source <https://github.com/intermine/intermine/blob/dev/intermine/bio/webapp/src/org/intermine/bio/web/logic/widget/GeneLenghtCorrectionCoefficient.java>`_.
+    The relevant `InterMine source <https://github.com/intermine/intermine/blob/dev/intermine/bio/webapp/src/org/intermine/bio/web/widget/GeneLenghtCorrectionCoefficient.java>`_.
 
 
 References
