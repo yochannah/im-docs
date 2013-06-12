@@ -80,9 +80,9 @@ The file needs to be called ``presenter.coffee`` and be placed in a directory wi
         # Render accepts a target to draw results into.
         render: (target) ->
 
-The constructor is passed two variables, ``config`` and ``templates`` which are objects that have references to config from a mine and templates that we will write in the next step.
+The constructor is passed two objects, ``config`` and ``templates``. These contain config coming from the server merged with config from the client and templates that we will write in the next step.
 
-The ``render`` function is passed a target variable which is the element where we will want to place the widget's output.
+The ``render`` function is passed a target string which is the element where we will want to place the widget's output (rendered templates).
 
 It is up to you what you do in between. The reference implementation of the precompile containes different widgets that you can inspect and see how they work. Many of them use a client side framework called `Backbone <http://documentcloud.github.com/backbone/>`_ to efficiently manipulate data and display them. It is up to you which framework you use, if any. In the last step, config, we will learn how to setup the widget to download these libraries for us when needed.
 
@@ -150,27 +150,21 @@ Then there are two directives that define libraries (JavaScript/CSS) to load for
 Dependencies
 ~~~~~~~~~~~~
 
-To define library dependencies of a widget, use the ``dependencies`` key pointing to a list. You can even specify if we need to first wait to fetch a library before fetching another (synchronous loading). In the following example, we fetch 3 libraries. The first two are JavaScript files where the second (and subsequent) one waits for the first one to finish loading. The last library asks for a CSS file. Bear in mind that all files are included on the page without any prefixes. So you need to deal with a potential that two libraries will not work well together and styles are clashing.
+To define library dependencies of a widget, use the ``dependencies`` key pointing to an object. Follow the spec in :doc:`/embedding/api-loader`.
 
 .. code-block:: javascript
 
-    "dependencies": [
-        {
-            "name": "jQuery",
-            "path": "http://somwhere/jquery.js",
-            "type": "js",
-            "wait": true
-        },
-        {
-            "name": "_",
-            "path": "http://somewhere/underscore.js",
-            "type": "js"
-        },
-        {
-            "path": "http://somewhere/style.css",
-            "type": "css"
+    "dependencies": {
+        "js": {
+            "A": {
+                "path": 'http://A.js',
+                "depends": ["B"]
+            },
+            "B": {
+                "path": 'http://B.js'
+            }
         }
-    ]
+    }
 
 Config
 ~~~~~~
@@ -205,11 +199,11 @@ Now we say that we want to load report widgets passing in a callback function. I
 
 .. code-block:: javascript
 
-    intermine.load('reportWidgets', function() {
+    intermine.load('reportWidgets', function(err) {
         var widgets = new intermine.reportWidgets('http://127.0.0.1:1119');
     });
 
-In this callback still we say which widget we want passing in extra config that should be merged with service config. This way we can pass in say a symbol of a specific gene we have on a 'page'.
+In this callback still we say which widget we want passing in extra config that should be merged with the server config. This way we can pass in say a symbol of a specific gene we have on a 'page'.
 
 .. code-block:: javascript
 
@@ -282,5 +276,3 @@ Optional
 ^^^^^^^^
 
 * Provide a callback where all widgets can dump error messages.
-
-
