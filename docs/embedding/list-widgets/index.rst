@@ -207,7 +207,12 @@ Create a new Widgets instance pointing to a service:
 
 .. code-block:: javascript
 
+    // < 2.0.0
     var widgets = new intermine.widgets("http://beta.flymine.org/query/service/");
+    // >= 2.0.0
+    var ListWidgets = require('list-widgets');
+    ver widgets = new ListWidgets({ 'root': 'http://beta.flymine.org/query/service/' })
+
 
 Choose a widget
 ^^^^^^^^^^^^^^^
@@ -230,49 +235,44 @@ CSS
 
 .. note::
 
-    Widgets are using `Twitter Bootstrap <http://twitter.github.com/bootstrap>`_ CSS framework.
+    Widgets are using `Twitter Bootstrap 2 <http://getbootstrap.com/2.3.2/>`_ CSS framework.
 
 Embedding mine widgets on a custom page
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Following is a documentation describing how to embed widgets not in a mine context.
 
-.. note::
-    
-    Online example can be visited at `tinkerbin <http://tinkerbin.com/Xb3SZhOK>`_.
-
 #. Open up a document in your text editor.
-#. Use the :doc:`/embedding/api-loader` that always gives you the latest version of the widgets. In the ``<head>`` element of the page, add the following line:
+#. In the ``<head>`` element of the page, add the following line:
 
     .. code-block:: html
         
-        <script src="http://cdn.intermine.org/api"></script>
+        <link href="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.js"></script>
 
 #. Load the Widget Service:
 
     .. code-block:: html
 
         <script type="text/javascript">
-            intermine.load('widgets', function() {
-                var Widgets = new intermine.widgets('http://beta.flymine.org/query/service/');
-            });
+          var ListWidgets = require('list-widgets');
+          var widgets = new ListWidgets({ 'root': 'http://beta.flymine.org/beta/service' });
         </script>
 
-    ``intermine.load`` represents a block of code that loads the widgets by pointing them to a specific mine.
 #. Use the widget web service to view which widgets are available on the mine, eg: `http://beta.flymine.org/beta/service/widgets/`
 #. See which lists are available in the mine: `http://beta.flymine.org/query/service/lists`
-#. Add a widget (from the list in the previous step) to JavaScript. So within the ``intermine.load`` block, after creating the ``Widgets`` instance, do this:
+#. Add a widget (from the list in the previous step) to JavaScript. After creating ``widgets``, do this:
 
     .. code-block:: javascript
 
         // Load all Widgets:
-        Widgets.all('Gene', 'myList', '#all-widgets');
+        widgets.all('Gene', 'myList', '#all-widgets');
         // Load a specific Chart Widget:
-        Widgets.chart('flyfish', 'myList', '#widget-1');
+        widgets.chart('flyfish', 'myList', '#widget-1');
         // Load a specific Enrichment Widget:
-        Widgets.enrichment('pathway_enrichment', 'myList', '#widget-2');
+        widgets.enrichment('pathway_enrichment', 'myList', '#widget-2');
         // Load a specific Table Widget:
-        Widgets.table('interactions', 'myList', '#widget-3');
+        widgets.table('interactions', 'myList', '#widget-3');
 
     Where the *first parameter*' passed is either type of object or name of widget to load. The *second* is the name of list (public list) to access and *third* is an element on the page where your widgets will appear. This element needs to obviously exist on the page first. A common one is a div that would look like this: ``<div id="all-widgets"></div>``.
 
@@ -284,20 +284,19 @@ Following is a documentation describing how to embed widgets not in a mine conte
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <title>test</title>
-            <script src="http://cdn.intermine.org/api"></script>
+            <link href="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
+            <script src="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.js"></script>
             <script type="text/javascript">
                 intermine.load('widgets', function() {
-                    var Widgets = new intermine.widgets('http://beta.flymine.org/query/service/');
-                    // Load all Widgets:
-                    Widgets.all('Gene', 'myList', '#all-widgets');
+                    var ListWidgets = require('list-widgets');
+                    var widgets = new ListWidgets({ 'root': 'http://beta.flymine.org/beta/service' });
+                    widgets.all('Gene', 'myList', '#all-widgets');
                 });
             </script>
         </head>
 
         <body>
             <!-- DIV goes here -->
-            <div class="widget" id="all-widgets">
+            <div id="all-widgets">
         </body>
         </html>
-
-#. You will have noticed that the widgets either pickup a style (CSS) from your HTML page, or they appear unstyled. To style them, you can use a variant of Twitter Bootstrap.
