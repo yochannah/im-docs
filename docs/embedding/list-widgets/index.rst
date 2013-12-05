@@ -247,8 +247,8 @@ Following is a documentation describing how to embed widgets not in a mine conte
 
     .. code-block:: html
         
-        <link href="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
-        <script src="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.js"></script>
+        <link href="http://cdn.intermine.org/js/intermine/apps-c/list-widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="http://cdn.intermine.org/js/intermine/apps-c/list-widgets/2.0.2/app.bundle.min.js"></script>
 
 #. Load the Widget Service:
 
@@ -284,8 +284,8 @@ Following is a documentation describing how to embed widgets not in a mine conte
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <title>test</title>
-            <link href="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
-            <script src="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.js"></script>
+            <link href="http://cdn.intermine.org/js/intermine/apps-c/list-widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
+            <script src="http://cdn.intermine.org/js/intermine/apps-c/list-widgets/2.0.2/app.bundle.min.js"></script>
             <script type="text/javascript">
                 intermine.load('widgets', function() {
                     var ListWidgets = require('list-widgets');
