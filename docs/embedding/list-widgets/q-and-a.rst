@@ -6,7 +6,7 @@ List Widgets Questions & Answers
 Source files
 ------------
 
-Source files for the `List widgets client <https://github.com/intermine/intermine-list-widgets>`_.
+Source files for the `List widgets client <https://github.com/intermine/intermine-apps-c/tree/master/list-widgets>`_.
 
 Using a temporary list on the fly
 ---------------------------------
@@ -25,8 +25,8 @@ First require the JavaScript libraries needed to run the example. You probably h
 
 .. code-block:: html
 
-    <link href="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
-    <script src="http://cdn.intermine.org/js/intermine/widgets/2.0.2/app.bundle.min.js"></script>
+    <link href="http://cdn.intermine.org/js/intermine/apps-c/list-widgets/2.0.2/app.bundle.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="http://cdn.intermine.org/js/intermine/apps-c/list-widgets/2.0.2/app.bundle.min.js"></script>
 
 The next step is defining a couple of variables.
 
