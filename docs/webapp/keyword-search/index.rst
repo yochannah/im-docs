@@ -1,9 +1,17 @@
 Keyword Search
 ================================
 
-Indexing the database runs as a post-process step which creates the index in a directory. The index is then zipped and stored in the database, when you deploy a webapp pointing at the database it will extract the index again. For FlyMine indexing takes less than an hour, including a large proportion of the database.
+Indexing the database runs as a post-process step which creates the index in a
+directory. The index is then zipped and stored in the database, when you deploy
+a webapp pointing at the database it will extract the index again. For FlyMine
+indexing takes less than an hour, including a large proportion of the database.
 
-By default the index will include the text fields of all objects in the database. Each object in the database becomes a document in the index with text attributes attached. You can configure classes to ignore, such as locations and scores that don't provide text information. You can also add related information to an object, for example you can configure that the synonyms, pathways and GO terms should be included in the Gene's entry. 
+By default the index will include the text fields of all objects in the
+database. Each object in the database becomes a document in the index with text
+attributes attached. You can configure classes to ignore, such as locations and
+scores that don't provide text information. You can also add related
+information to an object, for example you can configure that the synonyms,
+pathways and GO terms should be included in the Gene's entry. 
 
 fields in the results
    determined by WebConfigModel
@@ -17,7 +25,8 @@ score
 lists
    Users can make lists from search results but only if all results are of the same type.
 
-To view entire the entire index:  Navigate to search results page without search parameter, eg http://www.flymine.org/query/keywordSearchResults.do
+To view entire the entire index:  Navigate to search results page without
+search parameter, eg http://www.flymine.org/query/keywordSearchResults.do
 
 Config file
 ------------------------
@@ -51,11 +60,45 @@ The config file is located at `MINE_NAME/dbmodel/resources/keyword_search.proper
 
 * index.boost.<CLASS_NAME>
 
-   * weight this class heavier than other objects
+   * weight this class heavier than other objects. This means if two results
+     are found for the same term, the weighted object will be ranked higher in
+     the search results. An example of this is a search that returns a gene,
+     the protein for that gene and an author who happens to have the same name
+     as the gene - here we could weight Gene above Protein and both above
+     Author so that we return the objects in the most reasonable order.
 
 * search.debug
 
    * debug setting off, used only for testing
+
+Recommended Configuration:
+---------------------------------
+
+The following is the recommended configuration if you want facetting by data
+type (note that this is different from previous versions - Category should be
+configured as a multi-facet):
+
+.. code-block::properties
+
+   index.facet.multi.Category = Category
+
+Genomic mines will probably want configuration along these lines, depending on
+the data loaded into your data-store:
+
+.. code-block::properties
+
+    index.temp.directory = /tmp
+    index.references.BioEntity = synonyms organism crossReferences
+    index.references.OntologyTerm = synonyms
+    index.references.Protein = proteinDomains
+
+    index.ignore = Comment CrossReference Location OntologyAnnotation OntologyRelation Sequence Synonym
+
+    index.facet.single.Organism = organism.shortName
+
+    # Our users care about Genes a lot, and proteins a little.
+    index.boost.Gene = 1.5
+    index.boost.Protein = 1.2
 
 Search Results
 ----------------------
